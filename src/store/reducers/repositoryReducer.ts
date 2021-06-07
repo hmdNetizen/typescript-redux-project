@@ -1,12 +1,10 @@
+import { Action } from "../actions";
+import { ActionType } from "../action-types";
+
 interface RepositoriesState {
   loading: boolean;
   error: string | null;
   data: string[];
-}
-
-interface Action {
-  type: string;
-  payload?: any;
 }
 
 const reducer = (
@@ -14,19 +12,19 @@ const reducer = (
   action: Action
 ): RepositoriesState => {
   switch (action.type) {
-    case "search_repositories":
+    case ActionType.SEARCH_REPOSITORIES:
       return {
         loading: true,
         error: null,
         data: [],
       };
-    case "search_repositories_success":
+    case ActionType.SEARCH_REPOSITORIES_SUCCESS:
       return {
         loading: false,
         error: null,
         data: action.payload,
       };
-    case "search_repositories_failure":
+    case ActionType.SEARCH_REPOSITORIES_FAILURE:
       return {
         loading: false,
         error: action.payload,
